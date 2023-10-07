@@ -12,6 +12,28 @@ To get these datasets, you can refer to DRC for details.
 So, for the Dogs dataset, you need to also download the `dogs_raw_data.zip` from DRC, 
 extract the zip and put the raw Dog data into the Dogs directory.
 
+The directory of dataset should be like as:
+```
+DRC_processed
+├── birds
+│   ├── bounding_boxes.txt
+│   ├── images
+│   ├── images.txt
+│   ├── segmentations
+│   └── train_val_test_split.txt
+├── cars
+│   ├── data_mrcnn
+│   ├── data_mrcnn_test_select.npy
+│   └── data_mrcnn_train_select.npy
+└── dogs
+    ├── data_mrcnn
+    ├── data_te_sel.npy
+    ├── data_tr_sel.npy
+    ├── test_orig
+    └── train_orig
+```
+Remember to change the path config in the train_ILS_64/128.py to your own directory.
+
 ### Getting started
 
 For the experiments under 64*64 resolution, you can simply run the following command.
