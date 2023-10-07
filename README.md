@@ -1,4 +1,5 @@
-### This is the official implementation of paper "ILSGAN: Independent Layer Synthesis for  Unsupervised Foreground-Background Segmentation". [AAAI 2023][Oral]. [[arXiv]](https://arxiv.org/abs/2211.13974)
+## ILSGAN: Independent Layer Synthesis for  Unsupervised Foreground-Background Segmentation
+This is the official implementation of ILSGAN paper [AAAI 2023 ][Oral] [[arXiv]](https://arxiv.org/abs/2211.13974).
 
 ### Environment
 We follow the environment of [StyleGAN2-ADA](https://github.com/NVlabs/stylegan2-ada-pytorch): PyTorch 1.7.1, Python 3.7, CUDA 11.0.
