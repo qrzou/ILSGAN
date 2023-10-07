@@ -7,7 +7,10 @@ You may also need to install these python libraries: `pip install click requests
 
 ### Dataset
 We use the `CUB`, `Dog`, and `Car` datasets provided by [DRC](https://github.com/yuPeiyu98/Deep-Region-Competition).
-To get these datasets, you can refer to DRC for details.
+To get these datasets, you can refer to DRC for details. 
+* Different from DRC, we use the original image (not resized image) for training ILSGAN. 
+So, for the Dogs dataset, you need to also download the `dogs_raw_data.zip` from DRC, 
+extract the zip and put the raw Dog data into the Dogs directory.
 
 ### Getting started
 
