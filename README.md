@@ -1,12 +1,12 @@
 ## ILSGAN: Independent Layer Synthesis for  Unsupervised Foreground-Background Segmentation
-This is the official implementation of ILSGAN paper [AAAI 2023 ][Oral] [[arXiv]](https://arxiv.org/abs/2211.13974).
+This is the official implementation of ILSGAN paper [[arXiv]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral].
 
 ### Environment
 We follow the environment of [StyleGAN2-ADA](https://github.com/NVlabs/stylegan2-ada-pytorch): PyTorch 1.7.1, Python 3.7, CUDA 11.0.
 You may also need to install these python libraries: `pip install click requests tqdm pyspng ninja imageio-ffmpeg==0.4.3`
 
 ### Dataset
-We use the datasets provided by [DRC](https://github.com/yuPeiyu98/Deep-Region-Competition).
+We use the `CUB`, `Dog`, and `Car` datasets provided by [DRC](https://github.com/yuPeiyu98/Deep-Region-Competition).
 To get these datasets, you can refer to DRC for details.
 
 ### Getting started
