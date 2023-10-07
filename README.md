@@ -1,4 +1,11 @@
 ## ILSGAN: Independent Layer Synthesis for  Unsupervised Foreground-Background Segmentation
+
+<p align="center">
+  <img src="docs/generation_results.png" width="100%" />
+  <img src="docs/model_structure.png" width="60%" />
+</p>
+
+
 This is the official implementation of ILSGAN paper [[arXiv]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral].
 
 ### Environment
