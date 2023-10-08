@@ -6,9 +6,8 @@
 </p>
 
 
-这是 ILSGAN 论文的官方实现 [[arXiv_paper]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral]
-
-ILSGAN 能够针对单类单物的真实图片，实现强大的无监督前背景分割结果。
+本项目为 ILSGAN 论文的 PyTorch 实现。ILSGAN 能够针对单类单物的真实图片，实现强大的无监督前背景分割 SOTA 结果。
+[[arXiv_paper]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral]
 
 [[En](README.md)]
 
