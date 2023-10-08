@@ -6,22 +6,23 @@
 </p>
 
 
-This is the official implementation of ILSGAN paper [[arXiv]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral].
+这是 ILSGAN 论文的官方实现 [[arXiv_paper]](https://arxiv.org/abs/2211.13974) [AAAI 2023] [Oral]
 
-[[中文](README_zh.md)]
+ILSGAN 能够针对单类单物的真实图片，实现强大的无监督前背景分割结果。
 
-### Environment
-We follow the environment of [StyleGAN2-ADA](https://github.com/NVlabs/stylegan2-ada-pytorch): PyTorch 1.7.1, Python 3.7, CUDA 11.0.
-You may also need to install these python libraries: `pip install click requests tqdm pyspng ninja imageio-ffmpeg==0.4.3`
+[[En](README.md)]
+
+### 安装环境
+ILSGAN 的安装环境配置基于 [StyleGAN2-ADA](https://github.com/NVlabs/stylegan2-ada-pytorch): PyTorch 1.7.1, Python 3.7, CUDA 11.0.
+通常还需要安装如下的 python 库: `pip install click requests tqdm pyspng ninja imageio-ffmpeg==0.4.3`
 
 ### Dataset
-We use the `CUB`, `Dog`, and `Car` datasets provided by [DRC](https://github.com/yuPeiyu98/Deep-Region-Competition).
-To get these datasets, you can refer to DRC for details. 
-* Different from DRC, we use the original image (not resized image) for training ILSGAN. 
-So, for the Dogs dataset, you need to also download the `dogs_raw_data.zip` from DRC, 
-extract the zip and put the raw Dog data into the Dogs directory.
+我们使用 [DRC](https://github.com/yuPeiyu98/Deep-Region-Competition) 处理的 `CUB`, `Dog`, and `Car` 数据集训练 ILSGAN.
+请根据 DRC 项目来得到对应的数据集。
+* 与 DRC 不同，我们使用未经大小比例变换的原始图片来训练 ILSGAN。
+因此针对 Dogs 数据集，同时需要从 DRC 项目中下载 `dogs_raw_data.zip`，解压之后将里面的文件放入 Dogs 数据集路径中。
 
-The directory of dataset should be like as:
+最终应该得到如下所示的数据集目录结构：
 ```
 DRC_processed
 ├── birds
@@ -41,42 +42,44 @@ DRC_processed
     ├── test_orig
     └── train_orig
 ```
-Remember to change the path config in the train_ILS_64/128.py to your own directory.
+注意，请同时将 `train_ILS_64/128.py` 文件中有关数据集路径的配置修改为本地的路径。
+
 
 ### Getting started
 
-For the experiments under 64*64 resolution, you can simply run the following command.
-It can automatically do ILSGAN's training, data generation, unsupervised segmentation eval, and MI eval.
-Select --data option in [car, cub, dog] for your needed dataset.
+对于 64*64 分辨率，可以直接运行如下命令。这将会自动地完成 ILSGAN 的训练、数据生成、无监督分割评估、以及互信息评估。
+更改 --data 选项来选择 [car, cub, dog] 数据集。
+
 ```.bash
 CUDA_VISIBLE_DEVICES=0 python train_ILS_64.py --outdir=./outputs --data=car --gpus=1 --cfg=ILS_predL --batch=32
 ```
 
-For the experiments under 128*128, you need to manually run the following commands for training, generation, and evaluation:
+对于 128*128 分辨率，需要手动运行如下命令以完成训练、生成、与评估。
+
 ```.bash
-# Train ILSGAN
+# 训练 ILSGAN
 CUDA_VISIBLE_DEVICES=0 python train_ILS_128.py --outdir=./outputs --data=car --gpus=1 --cfg=ILS --batch=32
 
-# Generate segmentation samples from ILSGAN
+# 用 ILSGAN 生成分割样本
 CUDA_VISIBLE_DEVICES=0 python generate_segmentation_samples.py --network=./outputs/The-Exp-For-Eval --n=50000 --topk=8000
 
-# Evaluate the segmentation
+# 评估分割
 CUDA_VISIBLE_DEVICES=0 python eval_segmentation_eval128.py --aug=color --syn-data=./outputs/The-Exp-For-Eval/synthetic_data-XXXXXX --real-data=car --scale=128
 
-# Evaluate the mutual information
+# 评估互信息
 CUDA_VISIBLE_DEVICES=0 python eval_MI_MINE.py --path=./outputs/The-Exp-For-Eval/auto_test/synthetic_data-XXXXXX
 
 ```
 
-If you want to manually eval the 64*64 resolution results, follow these commands:
+如果需要在 64*64 分辨率手动生成样本与评估结果，运行如下指令：
 ```.bash
-# Generate segmentation samples from ILSGAN
+# 用 ILSGAN 生成分割样本
 CUDA_VISIBLE_DEVICES=0 python generate_segmentation_samples.py --network=./outputs/The-Exp-For-Eval --n=50000 --topk=8000
 
-# Evaluate the segmentation
+# 评估分割
 CUDA_VISIBLE_DEVICES=0 python eval_segmentation.py --aug=color --syn-data=./outputs/The-Exp-For-Eval/synthetic_data-XXXXXX --real-data=car --scale=64
 
-# Evaluate the mutual information
+# 评估互信息
 CUDA_VISIBLE_DEVICES=0 python eval_MI_MINE.py --path=./outputs/The-Exp-For-Eval/auto_test/synthetic_data-XXXXXX
 ```
 
